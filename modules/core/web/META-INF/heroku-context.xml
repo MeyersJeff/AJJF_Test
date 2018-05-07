@@ -1,0 +1,13 @@
+<Context>
+    <!-- Database connection -->
+    <Resource driverClassName="com.mysql.jdbc.Driver"
+              maxIdle="2"
+              maxTotal="20"
+              maxWaitMillis="5000"
+              name="jdbc/CubaDS"
+              password="x7mdb0l799ijgobe"
+              type="javax.sql.DataSource"
+              url="jdbc:mysql://tviw6wn55xwxejwj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+              username="xra4vl0b95k3znc1"/>
+    <Manager pathname=""/>
+</Context>
