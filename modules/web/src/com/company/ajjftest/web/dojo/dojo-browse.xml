@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.ajjftest.web.dojo.DojoBrowse"
+        focusComponent="dojoesTable"
+        lookupComponent="dojoesTable"
+        messagesPack="com.company.ajjftest.web.dojo">
+    <dsContext>
+        <groupDatasource id="dojoDs"
+                         class="com.company.ajjftest.entity.Dojo"
+                         view="dojo-view">
+            <query>
+                <![CDATA[select e 
+from ajjftest$Dojo e
+order by e.name_short]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="dojoesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="dojoesTable"
+                datasource="dojoDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="dojoesTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name_short"/>
+                <column id="name_long"/>
+                <column id="city"/>
+                <column id="head1"/>
+            </columns>
+            <rows datasource="dojoDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="dojoesTable.create"/>
+                <button id="editBtn"
+                        action="dojoesTable.edit"/>
+                <button id="removeBtn"
+                        action="dojoesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

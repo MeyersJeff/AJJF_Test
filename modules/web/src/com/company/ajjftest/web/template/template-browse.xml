@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.ajjftest.web.template.TemplateBrowse"
+        focusComponent="templatesTable"
+        lookupComponent="templatesTable"
+        messagesPack="com.company.ajjftest.web.template">
+    <dsContext>
+        <groupDatasource id="templatesDs"
+                         class="com.company.ajjftest.entity.Template"
+                         view="_local">
+            <query>
+                <![CDATA[select e from ajjftest$Template e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="templatesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="templatesTable"
+                datasource="templatesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="templatesTable"
+                    width="60%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="description"/>
+                <column id="emailSubject"/>
+            </columns>
+            <rows datasource="templatesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="templatesTable.create"/>
+                <button id="editBtn"
+                        action="templatesTable.edit"/>
+                <button id="removeBtn"
+                        action="templatesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="members"
+          insertBefore="administration">
+        <item id="ajjftest$Member.browse"/>
+        <item screen="sendEmail"/>
+    </menu>
+    <menu id="dojos"
+          insertBefore="administration">
+        <item id="ajjftest$Dojo.browse"/>
+    </menu>
+    <menu id="codes"
+          insertBefore="administration">
+        <item id="ajjftest$CodesRank.browse"/>
+        <item screen="ajjftest$Template.browse"/>
+        <item id="open-settings"
+              screen="centraloffice-opener"/>
+    </menu>
+</menu-config>

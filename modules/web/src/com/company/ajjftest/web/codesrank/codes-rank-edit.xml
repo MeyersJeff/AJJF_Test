@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.ajjftest.web.codesrank.CodesRankEdit"
+        datasource="codesRankDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.ajjftest.web.codesrank">
+    <dsContext>
+        <datasource id="codesRankDs"
+                    class="com.company.ajjftest.entity.CodesRank"
+                    view="_local"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="codesRankDs">
+            <column width="250px">
+                <field id="sequence"
+                       caption="Sort"/>
+                <field id="name_short"/>
+                <field id="name_long"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

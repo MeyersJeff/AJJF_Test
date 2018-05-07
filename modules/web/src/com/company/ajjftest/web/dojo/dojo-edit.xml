@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.ajjftest.web.dojo.DojoEdit"
+        datasource="dojoDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.ajjftest.web.dojo">
+    <dsContext>
+        <datasource id="dojoDs"
+                    class="com.company.ajjftest.entity.Dojo"
+                    view="dojo-view"/>
+        <collectionDatasource id="membersDs"
+                              class="com.company.ajjftest.entity.Member"
+                              view="_local">
+            <query>
+                <![CDATA[select m
+from ajjftest$Member m
+where m.dojo.id = :ds$dojoDs]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="dojoDs">
+            <column width="250px">
+                <field id="name_short"/>
+                <field id="name_long"/>
+                <field id="addr1"/>
+                <field id="addr2"/>
+                <field id="city"/>
+                <field id="state"/>
+                <field id="zip"/>
+                <field id="head1"
+                       optionsDatasource="membersDs"/>
+                <field id="head2"
+                       optionsDatasource="membersDs"/>
+                <field id="head3"
+                       optionsDatasource="membersDs"/>
+            </column>
+        </fieldGroup>
+        <groupBox id="audit_group"
+                  caption="Audit Info"
+                  spacing="true"
+                  width="450px">
+            <hbox spacing="true">
+                <label id="create_label"
+                       value="Created"/>
+                <label id="create_who"
+                       datasource="dojoDs"
+                       property="createdBy"/>
+                <label id="create_when"
+                       datasource="dojoDs"
+                       property="createTs">
+                    <formatter class="com.haulmont.cuba.gui.components.formatters.DateFormatter"
+                               format="MM/dd/yyyy HH:mm:ss"/>
+                </label>
+            </hbox>
+            <hbox spacing="true">
+                <label id="update_label"
+                       value="Updated"/>
+                <label id="update_who"
+                       datasource="dojoDs"
+                       property="updatedBy"/>
+                <label id="update_when"
+                       datasource="dojoDs"
+                       property="updateTs">
+                    <formatter class="com.haulmont.cuba.gui.components.formatters.DateFormatter"
+                               format="MM/dd/yyyy HH:mm:ss"/>
+                </label>
+            </hbox>
+        </groupBox>
+        <label value="msg://members"/>
+        <table id="membersTable"
+               height="200px"
+               width="450px">
+            <columns>
+                <column id="name_last"/>
+                <column id="name_first"/>
+                <column id="name_middle"/>
+                <column id="memberNumber"/>
+                <column id="notes"/>
+                <column id="emailAddr"/>
+            </columns>
+            <rows datasource="membersDs"/>
+        </table>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

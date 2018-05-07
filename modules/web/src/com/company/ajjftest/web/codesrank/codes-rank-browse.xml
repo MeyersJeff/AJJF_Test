@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.ajjftest.web.codesrank.CodesRankBrowse"
+        focusComponent="codesRanksTable"
+        lookupComponent="codesRanksTable"
+        messagesPack="com.company.ajjftest.web.codesrank">
+    <dsContext>
+        <groupDatasource id="codesRanksDs"
+                         class="com.company.ajjftest.entity.CodesRank"
+                         view="_local">
+            <query>
+                <![CDATA[select e from ajjftest$CodesRank e
+order by e.sequence]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="codesRanksTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="codesRanksTable"
+                datasource="codesRanksDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="codesRanksTable"
+                    editable="true"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name_short"
+                        caption="Short Name"/>
+                <column id="name_long"
+                        caption="Long Name"/>
+                <column id="sequence"
+                        caption="Sort"/>
+            </columns>
+            <rows datasource="codesRanksDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="codesRanksTable.create"/>
+                <button id="editBtn"
+                        action="codesRanksTable.edit"/>
+                <button id="removeBtn"
+                        action="codesRanksTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

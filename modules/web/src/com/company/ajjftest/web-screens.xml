@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+    <include file="com/company/ajjftest/screens.xml"/>
+    <screen id="ajjftest$Dojo.browse"
+            template="com/company/ajjftest/web/dojo/dojo-browse.xml"/>
+    <screen id="ajjftest$Dojo.edit"
+            template="com/company/ajjftest/web/dojo/dojo-edit.xml"/>
+    <screen id="ajjftest$Member.browse"
+            template="com/company/ajjftest/web/member/member-browse.xml"/>
+    <screen id="ajjftest$Member.edit"
+            template="com/company/ajjftest/web/member/member-edit.xml"/>
+    <screen id="ajjftest$CodesRank.browse"
+            template="com/company/ajjftest/web/codesrank/codes-rank-browse.xml"/>
+    <screen id="ajjftest$CodesRank.edit"
+            template="com/company/ajjftest/web/codesrank/codes-rank-edit.xml"/>
+    <screen id="ajjftest$RenewalHistory.edit"
+            template="com/company/ajjftest/web/renewalhistory/renewal-history-edit.xml"/>
+    <screen id="ajjftest$RankHistory.edit"
+            template="com/company/ajjftest/web/rankhistory/rank-history-edit.xml"/>
+    <screen id="sendEmail"
+            template="com/company/ajjftest/web/screens/sendEmail.xml"/>
+    <screen id="ajjftest$Template.browse"
+            template="com/company/ajjftest/web/template/template-browse.xml"/>
+    <screen id="ajjftest$Template.edit"
+            template="com/company/ajjftest/web/template/template-edit.xml"/>
+    <screen id="ajjftest$CentralOffice.edit"
+            template="com/company/ajjftest/web/centraloffice/central-office-edit.xml"/>
+    <screen id="centraloffice-opener" class="com.company.ajjftest.web.centraloffice.CentralOfficeOpener" />
+</screen-config>

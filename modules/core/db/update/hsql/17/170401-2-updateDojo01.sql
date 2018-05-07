@@ -1,0 +1,2 @@
+alter table AJJFTEST_DOJO add constraint FK_AJJFTEST_DOJO_HEAD1 foreign key (HEAD1_ID) references AJJFTEST_MEMBER(ID);
+create index IDX_AJJFTEST_DOJO_HEAD1 on AJJFTEST_DOJO (HEAD1_ID);

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.company.ajjftest.web.screens.Sendemail"
+        focusComponent="memberid"
+        messagesPack="com.company.ajjftest.web.screens">
+    <dsContext>
+        <collectionDatasource id="membersDs"
+                              class="com.company.ajjftest.entity.Member"
+                              view="_local">
+            <query>
+                <![CDATA[select e from ajjftest$Member e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="templatesDs"
+                              class="com.company.ajjftest.entity.Template"
+                              view="_local">
+            <query>
+                <![CDATA[select e from ajjftest$Template e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <vbox spacing="true">
+            <lookupField id="memberid"
+                         caption="Choose Member"
+                         optionsDatasource="membersDs"/>
+            <lookupField id="templateid"
+                         caption="Choose Template"
+                         optionsDatasource="templatesDs"/>
+            <button id="sendButton"
+                    caption="Send Email"
+                    invoke="onSendButtonClick"/>
+            <button id="viewButton"
+                    caption="View PDF"
+                    invoke="onViewButtonClick"/>
+        </vbox>
+    </layout>
+</window>

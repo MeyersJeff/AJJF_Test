@@ -1,0 +1,2 @@
+alter table AJJFTEST_MEMBER add constraint FK_AJJFTEST_MEMBER_RANK foreign key (RANK_ID) references AJJFTEST_CODES_RANK(ID);
+create index IDX_AJJFTEST_MEMBER_RANK on AJJFTEST_MEMBER (RANK_ID);

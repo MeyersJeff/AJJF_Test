@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.ajjftest.web.rankhistory.RankHistoryEdit"
+        datasource="rankHistoryDs"
+        messagesPack="com.company.ajjftest.web.rankhistory">
+    <dsContext>
+        <datasource id="rankHistoryDs"
+                    class="com.company.ajjftest.entity.RankHistory"
+                    view="rankHistory-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <optionsGroup id="passFail"
+                      caption="Pass / Fail"
+                      datasource="rankHistoryDs"
+                      property="passFail"
+                      requiredMessage="pass fail is required"/>
+        <fieldGroup datasource="rankHistoryDs">
+            <column width="250px">
+                <field id="newRank"/>
+                <field id="promotionDate"
+                       dateFormat="MM/dd/yyyy"/>
+                <field id="testDate"
+                       dateFormat="MM/dd/yyyy"/>
+                <field id="testLocation"/>
+                <field id="notes"/>
+            </column>
+            <column>
+                <field id="examiner1"/>
+                <field id="examiner2"/>
+                <field id="examiner3"/>
+                <field id="examiner4"/>
+                <field id="caller"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

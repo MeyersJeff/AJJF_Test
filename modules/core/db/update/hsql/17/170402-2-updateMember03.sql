@@ -1,0 +1,1 @@
+alter table AJJFTEST_MEMBER add constraint FK_AJJFTEST_MEMBER_MEMBER_TRANS foreign key (MEMBER_TRANS_ID) references AJJFTEST_MEMBER_RENEWAL(ID);

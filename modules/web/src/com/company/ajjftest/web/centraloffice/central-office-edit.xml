@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.ajjftest.web.centraloffice.CentralOfficeEdit"
+        datasource="centralOfficeDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.ajjftest.web.centraloffice">
+    <dsContext>
+        <datasource id="centralOfficeDs"
+                    class="com.company.ajjftest.entity.CentralOffice"
+                    view="_local"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="centralOfficeDs">
+            <column width="350px">
+                <field property="orgShortName"/>
+                <field property="orgName"/>
+                <field property="adminName"/>
+                <field property="emailAddress"/>
+                <field property="phoneNumber"/>
+                <field property="coTitle"/>
+                <field property="coName"/>
+                <field property="coAddr1"/>
+                <field property="coAddr2"/>
+                <field property="coCityStateZip"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="extendedEditWindowActions"/>
+    </layout>
+</window>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.ajjftest.web.member.MemberEdit"
+        datasource="memberDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.ajjftest.web.member">
+    <dsContext>
+        <datasource id="memberDs"
+                    class="com.company.ajjftest.entity.Member"
+                    view="member-view"/>
+        <collectionDatasource id="ranksDs"
+                              class="com.company.ajjftest.entity.CodesRank"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e
+from ajjftest$CodesRank e
+order by e.sequence]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="renewalHistoryDs"
+                              class="com.company.ajjftest.entity.RenewalHistory"
+                              view="_local">
+            <query>
+                <![CDATA[select e 
+from ajjftest$RenewalHistory e
+where e.member.id = :ds$memberDs
+order by e.endDate desc]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="rankHistoryDs"
+                              class="com.company.ajjftest.entity.RankHistory"
+                              view="rankHistory-view">
+            <query>
+                <![CDATA[select e 
+from ajjftest$RankHistory e
+where e.member.id = :ds$memberDs
+order by e.promotionDate desc]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <fieldGroup id="fieldGroup"
+                    datasource="memberDs">
+            <column width="250px">
+                <field id="memberNumber"/>
+                <field id="dojo"/>
+                <field id="name_first"/>
+                <field id="name_middle"/>
+                <field id="name_last"/>
+                <field id="rank"
+                       optionsDatasource="ranksDs"/>
+                <field id="emailAddr"/>
+            </column>
+            <column>
+                <field id="birthDate"
+                       dateFormat="MM/dd/yyyy"/>
+                <field id="notes"/>
+            </column>
+            <column>
+                <field id="age"
+                       editable="false"/>
+            </column>
+        </fieldGroup>
+        <tabSheet id="memberDetailTab"
+                  width="AUTO">
+            <tab id="renewal"
+                 caption="Renewal"
+                 spacing="true">
+                <table id="renewTable"
+                       height="100%"
+                       width="100%">
+                    <actions>
+                        <action id="edit"/>
+                    </actions>
+                    <columns>
+                        <column id="startDate"/>
+                        <column id="endDate"/>
+                        <column id="entryDate"/>
+                        <column id="amountPaid"/>
+                        <column id="notes"/>
+                    </columns>
+                    <rows datasource="renewalHistoryDs"/>
+                </table>
+            </tab>
+            <tab id="rank"
+                 caption="Rank"
+                 spacing="true">
+                <table id="rankTable"
+                       height="100%"
+                       width="100%">
+                    <actions>
+                        <action id="edit"/>
+                    </actions>
+                    <columns>
+                        <column id="passFail"/>
+                        <column id="testDate"/>
+                        <column id="promotionDate"/>
+                        <column id="newRank"/>
+                        <column id="testLocation"/>
+                        <column id="notes"/>
+                    </columns>
+                    <rows datasource="rankHistoryDs"/>
+                </table>
+            </tab>
+        </tabSheet>
+        <frame id="windowActions"
+               screen="editWindowActions"
+               width="AUTO"/>
+    </layout>
+</window>

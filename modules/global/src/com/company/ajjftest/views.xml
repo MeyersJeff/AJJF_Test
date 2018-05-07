@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="com.company.ajjftest.entity.Member"
+          extends="_local"
+          name="member-view"
+          systemProperties="true">
+        <property name="dojo"
+                  view="_minimal">
+            <property name="name_long"/>
+        </property>
+        <property name="rank"
+                  view="_minimal"/>
+        <property name="age"/>
+    </view>
+    <view class="com.company.ajjftest.entity.Dojo"
+          extends="_local"
+          name="dojo-view"
+          systemProperties="true">
+        <property name="head3"
+                  view="_minimal"/>
+        <property name="head2"
+                  view="_minimal"/>
+        <property name="head1"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.ajjftest.entity.RankHistory"
+          extends="_local"
+          name="rankHistory-view">
+        <property name="newRank"
+                  view="_minimal"/>
+        <property name="examiner1"
+                  view="_minimal"/>
+        <property name="examiner2"
+                  view="_minimal"/>
+        <property name="examiner3"
+                  view="_minimal"/>
+        <property name="examiner4"
+                  view="_minimal"/>
+        <property name="caller"
+                  view="_minimal"/>
+    </view>
+</views>

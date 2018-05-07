@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.ajjftest.web.member.MemberBrowse"
+        focusComponent="membersTable"
+        lookupComponent="membersTable"
+        messagesPack="com.company.ajjftest.web.member">
+    <dsContext>
+        <groupDatasource id="membersDs"
+                         class="com.company.ajjftest.entity.Member"
+                         view="member-view">
+            <query>
+                <![CDATA[select e 
+from ajjftest$Member e
+order by e.name_last,e.name_first]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="membersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="membersTable"
+                datasource="membersDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="membersTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="memberNumber"/>
+                <column id="name_last"/>
+                <column id="name_first"/>
+                <column id="name_middle"/>
+                <column id="dojo"/>
+                <column id="rank"/>
+                <column id="age"/>
+            </columns>
+            <rows datasource="membersDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="membersTable.create"/>
+                <button id="editBtn"
+                        action="membersTable.edit"/>
+                <button id="removeBtn"
+                        action="membersTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>
