@@ -7,7 +7,7 @@
               name="jdbc/CubaDS"
               password="x7mdb0l799ijgobe"
               type="javax.sql.DataSource"
-              url="jdbc:mysql://tviw6wn55xwxejwj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+              url="jdbc:mysql://tviw6wn55xwxejwj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/suukk6dv8m5jm4od"
               username="xra4vl0b95k3znc1"/>
     <Manager pathname=""/>
 </Context>
