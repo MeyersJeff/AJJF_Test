@@ -21,72 +21,78 @@ where m.dojo.id = :ds$dojoDs]]>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="windowActions"
-            spacing="true">
-        <fieldGroup id="fieldGroup"
-                    datasource="dojoDs">
-            <column width="250px">
-                <field id="name_short"/>
-                <field id="name_long"/>
-                <field id="addr1"/>
-                <field id="addr2"/>
-                <field id="city"/>
-                <field id="state"/>
-                <field id="zip"/>
-                <field id="head1"
-                       optionsDatasource="membersDs"/>
-                <field id="head2"
-                       optionsDatasource="membersDs"/>
-                <field id="head3"
-                       optionsDatasource="membersDs"/>
-            </column>
-        </fieldGroup>
-        <groupBox id="audit_group"
-                  caption="Audit Info"
-                  spacing="true"
-                  width="450px">
-            <hbox spacing="true">
-                <label id="create_label"
-                       value="Created"/>
-                <label id="create_who"
-                       datasource="dojoDs"
-                       property="createdBy"/>
-                <label id="create_when"
-                       datasource="dojoDs"
-                       property="createTs">
-                    <formatter class="com.haulmont.cuba.gui.components.formatters.DateFormatter"
-                               format="MM/dd/yyyy HH:mm:ss"/>
-                </label>
-            </hbox>
-            <hbox spacing="true">
-                <label id="update_label"
-                       value="Updated"/>
-                <label id="update_who"
-                       datasource="dojoDs"
-                       property="updatedBy"/>
-                <label id="update_when"
-                       datasource="dojoDs"
-                       property="updateTs">
-                    <formatter class="com.haulmont.cuba.gui.components.formatters.DateFormatter"
-                               format="MM/dd/yyyy HH:mm:ss"/>
-                </label>
-            </hbox>
-        </groupBox>
-        <label value="msg://members"/>
-        <table id="membersTable"
-               height="200px"
-               width="450px">
-            <columns>
-                <column id="name_last"/>
-                <column id="name_first"/>
-                <column id="name_middle"/>
-                <column id="memberNumber"/>
-                <column id="notes"/>
-                <column id="emailAddr"/>
-            </columns>
-            <rows datasource="membersDs"/>
-        </table>
-        <frame id="windowActions"
-               screen="editWindowActions"/>
+    <layout>
+        <scrollBox height="100%"
+                   responsive="true"
+                   spacing="true">
+            <fieldGroup id="fieldGroup"
+                        datasource="dojoDs"
+                        responsive="true">
+                <column width="250px">
+                    <field id="name_short"/>
+                    <field id="name_long"/>
+                    <field id="addr1"/>
+                    <field id="addr2"/>
+                    <field id="city"/>
+                    <field id="state"/>
+                    <field id="zip"/>
+                    <field id="head1"
+                           optionsDatasource="membersDs"/>
+                    <field id="head2"
+                           optionsDatasource="membersDs"/>
+                    <field id="head3"
+                           optionsDatasource="membersDs"/>
+                </column>
+            </fieldGroup>
+            <frame id="windowActions"
+                   responsive="true"
+                   screen="editWindowActions"/>
+            <table id="membersTable"
+                   caption="msg://members"
+                   height="140px"
+                   responsive="true"
+                   width="100%">
+                <columns>
+                    <column id="name_last"/>
+                    <column id="name_first"/>
+                    <column id="name_middle"/>
+                    <column id="memberNumber"/>
+                    <column id="notes"/>
+                    <column id="emailAddr"/>
+                </columns>
+                <rows datasource="membersDs"/>
+            </table>
+            <groupBox id="audit_group"
+                      caption="Audit Info"
+                      responsive="true"
+                      width="450px">
+                <hbox spacing="true">
+                    <label id="create_label"
+                           value="Created"/>
+                    <label id="create_who"
+                           datasource="dojoDs"
+                           property="createdBy"/>
+                    <label id="create_when"
+                           datasource="dojoDs"
+                           property="createTs">
+                        <formatter class="com.haulmont.cuba.gui.components.formatters.DateFormatter"
+                                   format="MM/dd/yyyy HH:mm:ss"/>
+                    </label>
+                </hbox>
+                <hbox spacing="true">
+                    <label id="update_label"
+                           value="Updated"/>
+                    <label id="update_who"
+                           datasource="dojoDs"
+                           property="updatedBy"/>
+                    <label id="update_when"
+                           datasource="dojoDs"
+                           property="updateTs">
+                        <formatter class="com.haulmont.cuba.gui.components.formatters.DateFormatter"
+                                   format="MM/dd/yyyy HH:mm:ss"/>
+                    </label>
+                </hbox>
+            </groupBox>
+        </scrollBox>
     </layout>
 </window>

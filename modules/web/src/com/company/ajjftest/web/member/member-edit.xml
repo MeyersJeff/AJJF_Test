@@ -41,73 +41,76 @@ order by e.promotionDate desc]]>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
-    <layout>
-        <fieldGroup id="fieldGroup"
-                    datasource="memberDs">
-            <column width="250px">
-                <field id="memberNumber"/>
-                <field id="dojo"/>
-                <field id="name_first"/>
-                <field id="name_middle"/>
-                <field id="name_last"/>
-                <field id="rank"
-                       optionsDatasource="ranksDs"/>
-                <field id="emailAddr"/>
-            </column>
-            <column>
-                <field id="birthDate"
-                       dateFormat="MM/dd/yyyy"/>
-                <field id="notes"/>
-            </column>
-            <column>
-                <field id="age"
-                       editable="false"/>
-            </column>
-        </fieldGroup>
-        <tabSheet id="memberDetailTab"
-                  width="AUTO">
-            <tab id="renewal"
-                 caption="Renewal"
-                 spacing="true">
-                <table id="renewTable"
-                       height="100%"
-                       width="100%">
-                    <actions>
-                        <action id="edit"/>
-                    </actions>
-                    <columns>
-                        <column id="startDate"/>
-                        <column id="endDate"/>
-                        <column id="entryDate"/>
-                        <column id="amountPaid"/>
-                        <column id="notes"/>
-                    </columns>
-                    <rows datasource="renewalHistoryDs"/>
-                </table>
-            </tab>
-            <tab id="rank"
-                 caption="Rank"
-                 spacing="true">
-                <table id="rankTable"
-                       height="100%"
-                       width="100%">
-                    <actions>
-                        <action id="edit"/>
-                    </actions>
-                    <columns>
-                        <column id="passFail"/>
-                        <column id="testDate"/>
-                        <column id="promotionDate"/>
-                        <column id="newRank"/>
-                        <column id="testLocation"/>
-                        <column id="notes"/>
-                    </columns>
-                    <rows datasource="rankHistoryDs"/>
-                </table>
-            </tab>
-        </tabSheet>
-        <frame id="windowActions"
-               screen="editWindowActions"
-               width="AUTO"/>
+    <layout spacing="true">
+        <scrollBox height="100%"
+                   spacing="true">
+            <fieldGroup id="fieldGroup"
+                        datasource="memberDs">
+                <column width="250px">
+                    <field id="memberNumber"/>
+                    <field id="dojo"/>
+                    <field id="name_first"/>
+                    <field id="name_middle"/>
+                    <field id="name_last"/>
+                    <field id="rank"
+                           optionsDatasource="ranksDs"/>
+                    <field id="emailAddr"/>
+                </column>
+                <column>
+                    <field id="birthDate"
+                           dateFormat="MM/dd/yyyy"/>
+                    <field id="notes"/>
+                </column>
+                <column>
+                    <field id="age"
+                           editable="false"/>
+                </column>
+            </fieldGroup>
+            <frame id="windowActions"
+                   screen="editWindowActions"
+                   width="AUTO"/>
+            <tabSheet id="memberDetailTab"
+                      width="AUTO">
+                <tab id="renewal"
+                     caption="Renewal"
+                     spacing="true">
+                    <table id="renewTable"
+                           height="100%"
+                           width="100%">
+                        <actions>
+                            <action id="edit"/>
+                        </actions>
+                        <columns>
+                            <column id="startDate"/>
+                            <column id="endDate"/>
+                            <column id="entryDate"/>
+                            <column id="amountPaid"/>
+                            <column id="notes"/>
+                        </columns>
+                        <rows datasource="renewalHistoryDs"/>
+                    </table>
+                </tab>
+                <tab id="rank"
+                     caption="Rank"
+                     spacing="true">
+                    <table id="rankTable"
+                           height="100%"
+                           width="100%">
+                        <actions>
+                            <action id="edit"/>
+                        </actions>
+                        <columns>
+                            <column id="passFail"/>
+                            <column id="testDate"/>
+                            <column id="promotionDate"/>
+                            <column id="newRank"/>
+                            <column id="testLocation"/>
+                            <column id="notes"/>
+                        </columns>
+                        <rows datasource="rankHistoryDs"/>
+                    </table>
+                </tab>
+            </tabSheet>
+        </scrollBox>
     </layout>
 </window>
