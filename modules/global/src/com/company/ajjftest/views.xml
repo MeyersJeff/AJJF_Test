@@ -39,4 +39,8 @@
         <property name="caller"
                   view="_minimal"/>
     </view>
+    <view class="com.company.ajjftest.entity.Template"
+          extends="_local"
+          name="template-view"
+          systemProperties="true"/>
 </views>

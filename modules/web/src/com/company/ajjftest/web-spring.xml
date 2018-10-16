@@ -10,6 +10,10 @@
                   ref="cuba_ServerSelector"/>
         <property name="remoteServices">
             <map>
+                <entry key="ajjftest_AJJFEmailService"
+                       value="com.company.ajjftest.service.AJJFEmailService"/>
+                <entry key="ajjftest_FreeMarkerService"
+                       value="com.company.ajjftest.service.FreeMarkerService"/>
             </map>
         </property>
     </bean>

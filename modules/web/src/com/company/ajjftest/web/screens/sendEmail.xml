@@ -26,10 +26,12 @@
         <vbox spacing="true">
             <lookupField id="memberid"
                          caption="Choose Member"
-                         optionsDatasource="membersDs"/>
+                         optionsDatasource="membersDs"
+                         required="true"/>
             <lookupField id="templateid"
                          caption="Choose Template"
-                         optionsDatasource="templatesDs"/>
+                         optionsDatasource="templatesDs"
+                         required="true"/>
             <button id="sendButton"
                     caption="Send Email"
                     invoke="onSendButtonClick"/>
