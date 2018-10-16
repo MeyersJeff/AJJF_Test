@@ -1,5 +1,6 @@
 package com.company.ajjftest.service;
 
+import com.company.ajjftest.core.OfficeMemberCombo;
 import com.company.ajjftest.entity.CentralOffice;
 import com.company.ajjftest.entity.Dojo;
 import com.company.ajjftest.entity.Member;
@@ -48,7 +49,7 @@ public class AJJFEmailServiceBean implements AJJFEmailService {
 
         CentralOffice co = GetCentralOffice();
 
-        com.company.ajjftest.data.Data d = new com.company.ajjftest.data.Data(co, member);
+        OfficeMemberCombo d = new OfficeMemberCombo(co, member);
 
         String emailBody = BuildBodyFromTemplate(d, template.getName());
 
@@ -82,7 +83,7 @@ public class AJJFEmailServiceBean implements AJJFEmailService {
 
         CentralOffice co = GetCentralOffice();
 
-        com.company.ajjftest.data.Data d = new com.company.ajjftest.data.Data(co, member);
+        OfficeMemberCombo d = new OfficeMemberCombo(co, member);
 
         String results = BuildBodyFromTemplate(d, tempName);
 
