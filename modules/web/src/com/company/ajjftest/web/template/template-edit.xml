@@ -22,6 +22,10 @@
                 <field property="emailSubject"/>
             </column>
         </fieldGroup>
+        <button id="previewButton"
+                caption="Preview"
+                description="Preview template in a new window"
+                invoke="onPreviewButtonClick"/>
         <sourceCodeEditor id="contentsEditor"
                           datasource="templateDs"
                           height="300px"
