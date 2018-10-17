@@ -14,6 +14,8 @@
                        value="com.company.ajjftest.service.AJJFEmailService"/>
                 <entry key="ajjftest_FreeMarkerService"
                        value="com.company.ajjftest.service.FreeMarkerService"/>
+                <entry key="ajjftest_PDFService"
+                       value="com.company.ajjftest.service.PDFService"/>
             </map>
         </property>
     </bean>

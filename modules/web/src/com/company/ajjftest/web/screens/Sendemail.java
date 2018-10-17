@@ -3,10 +3,13 @@ package com.company.ajjftest.web.screens;
 import com.company.ajjftest.entity.Member;
 import com.company.ajjftest.entity.Template;
 import com.company.ajjftest.service.AJJFEmailService;
+import com.company.ajjftest.service.PDFService;
 import com.haulmont.cuba.core.global.*;
 import com.haulmont.cuba.gui.components.AbstractWindow;
 import com.haulmont.cuba.gui.components.LookupField;
+import com.haulmont.cuba.gui.export.ByteArrayDataProvider;
 import com.haulmont.cuba.gui.export.ExportDisplay;
+import com.haulmont.cuba.gui.export.ExportFormat;
 
 import javax.inject.Inject;
 
@@ -27,18 +30,21 @@ public class Sendemail extends AbstractWindow {
     @Inject
     private AJJFEmailService emailService;
 
+    @Inject
+    private PDFService pdfService;
+
     public void onSendButtonClick() {
         Template template = templateid.getValue();
 
         if (template == null) {
-            showNotification("Choose a template");
+            showNotification("Choose a template", NotificationType.WARNING);
             return;
         }
 
         Member member = memberid.getValue();
 
         if (member == null) {
-            showNotification("Choose a member first");
+            showNotification("Choose a member first", NotificationType.WARNING);
             return;
         }
 
@@ -55,22 +61,22 @@ public class Sendemail extends AbstractWindow {
         Template template = templateid.getValue();
 
         if (template == null) {
-            showNotification("Choose a template");
+            showNotification("Choose a template", NotificationType.WARNING);
             return;
         }
 
         Member member = memberid.getValue();
 
         if (member == null) {
-            showNotification("Choose a member first");
+            showNotification("Choose a member first", NotificationType.WARNING);
             return;
         }
 
-//        member = GetFullMember(member);
+        member = GetFullMember(member);
 
-//        exportDisplay.show(new ByteArrayDataProvider(BuildPDF(member)),
-//                "Report.pdf",
-//                ExportFormat.PDF);
+        exportDisplay.show(new ByteArrayDataProvider(pdfService.generateMemberPDF(member)),
+                "Report.pdf",
+                ExportFormat.PDF);
     }
 
     private Member GetFullMember(Member member) {

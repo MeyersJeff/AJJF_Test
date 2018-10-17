@@ -73,9 +73,6 @@ configure([globalModule, coreModule, guiModule, webModule]) {
 configure(globalModule) {
 
     dependencies {
-        compile('com.itextpdf:kernel:7.0.2')
-        compile('com.itextpdf:io:7.0.2')
-        compile('com.itextpdf:layout:7.0.2')
     }
     entitiesEnhancing {
         main { enabled = true }
@@ -96,6 +93,10 @@ configure(coreModule) {
         provided(servletApi)
         jdbc(mysql)
         testRuntime(mysql)
+        compile('com.itextpdf:html2pdf:1.0.5')
+        compile('com.itextpdf:kernel:7.0.8')
+        compile('com.itextpdf:io:7.0.8')
+        compile('com.itextpdf:layout:7.0.8')
     }
 
     task cleanConf(description: 'Cleans up conf directory') << {
