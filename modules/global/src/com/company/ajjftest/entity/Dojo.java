@@ -9,6 +9,13 @@ import java.util.UUID;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.util.Collection;
+import javax.persistence.OneToMany;
+import java.util.List;
+import javax.persistence.OrderBy;
+import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @NamePattern("%s|name_short")
 @Table(name = "AJJFTEST_DOJO")
@@ -21,6 +28,16 @@ public class Dojo extends StandardEntity {
 
     @Column(name = "NAME_LONG", length = 100)
     protected String name_long;
+
+    @Column(name = "EMAIL_ADDRESS", length = 100)
+    protected String emailAddress;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "EXPIRE_DATE")
+    protected Date expireDate;
+
+    @OneToMany(mappedBy = "dojo")
+    protected List<Member> members;
 
     @Column(name = "ADDR1", length = 50)
     protected String addr1;
@@ -49,6 +66,29 @@ public class Dojo extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "HEAD3_ID")
     protected Member head3;
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
 
     public void setHead1(Member head1) {
         this.head1 = head1;

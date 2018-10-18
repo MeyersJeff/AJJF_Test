@@ -11,8 +11,9 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -55,12 +56,57 @@ public class Member extends StandardEntity {
 
 
     @Temporal(TemporalType.DATE)
+    @Column(name = "EXPIRE_DATE")
+    protected Date expireDate;
+
+    @Transient
+    @MetaProperty
+    protected String expireStatus;
+
+    @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE")
     protected Date birthDate;
 
     @Transient
     @MetaProperty
     protected Integer age;
+
+    public String getExpireStatus() {
+        if (expireDate == null) {
+            expireStatus = "NULL";
+            return expireStatus;
+        }
+
+        //Convert old Date type to new LocalDate objects
+        LocalDate memberExp = expireDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        //Calculate comparison dates
+        LocalDate today = LocalDate.now(ZoneId.systemDefault());
+        LocalDate pendDate = today.minusDays(30);
+        LocalDate expDate = today.minusDays(60);
+
+        if (memberExp.isAfter(today)) {
+            expireStatus = "OK";
+        } else if (memberExp.isBefore(expDate)) {
+            expireStatus = "EXP";
+        } else if (memberExp.isAfter(pendDate)) {
+            expireStatus = "PEND";
+        } else {
+            expireStatus = "???";
+        }
+
+        return expireStatus;
+    }
+
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
 
     public Integer getAge() {
 

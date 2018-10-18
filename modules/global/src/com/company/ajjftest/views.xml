@@ -11,6 +11,7 @@
         <property name="rank"
                   view="_minimal"/>
         <property name="age"/>
+        <property name="expireStatus"/>
     </view>
     <view class="com.company.ajjftest.entity.Dojo"
           extends="_local"
@@ -43,4 +44,17 @@
           extends="_local"
           name="template-view"
           systemProperties="true"/>
+    <view class="com.company.ajjftest.entity.Dojo"
+          extends="_local"
+          name="dojo-members-view">
+        <property name="members"
+                  view="_minimal">
+            <property name="rank"
+                      view="_minimal"/>
+            <property name="memberNumber"/>
+            <property name="emailAddr"/>
+            <property name="expireDate"/>
+            <property name="expireStatus"/>
+        </property>
+    </view>
 </views>

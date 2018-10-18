@@ -25,5 +25,8 @@
             template="com/company/ajjftest/web/template/template-edit.xml"/>
     <screen id="ajjftest$CentralOffice.edit"
             template="com/company/ajjftest/web/centraloffice/central-office-edit.xml"/>
-    <screen id="centraloffice-opener" class="com.company.ajjftest.web.centraloffice.CentralOfficeOpener" />
+    <screen id="centraloffice-opener"
+            class="com.company.ajjftest.web.centraloffice.CentralOfficeOpener"/>
+    <screen id="sendDojoEmail"
+            template="com/company/ajjftest/web/screens/sendDojoEmail.xml"/>
 </screen-config>

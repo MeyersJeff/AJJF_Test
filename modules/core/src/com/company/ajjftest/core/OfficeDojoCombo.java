@@ -1,7 +1,7 @@
 package com.company.ajjftest.core;
 
 import com.company.ajjftest.entity.CentralOffice;
-import com.company.ajjftest.entity.Member;
+import com.company.ajjftest.entity.Dojo;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.LoadContext;
 import org.springframework.stereotype.Component;
@@ -10,20 +10,20 @@ import javax.inject.Inject;
 import java.io.Serializable;
 
 @Component
-public class OfficeMemberCombo implements Serializable {
+public class OfficeDojoCombo implements Serializable {
     @Inject
     DataManager dataManager;
 
     private CentralOffice centralOffice;
-    private Member member;
+    private Dojo dojo;
 
-    public OfficeMemberCombo setOffice(CentralOffice centralOffice) {
+    public OfficeDojoCombo setOffice(CentralOffice centralOffice) {
         this.centralOffice = centralOffice;
         return this;
     }
 
-    public OfficeMemberCombo setMember(Member member) {
-        this.member = getFullMember(member);
+    public OfficeDojoCombo setDojo(Dojo dojo) {
+        this.dojo = getFullDojo(dojo);
         return this;
     }
 
@@ -31,14 +31,14 @@ public class OfficeMemberCombo implements Serializable {
         return centralOffice;
     }
 
-    public Member getMember() {
-        return member;
+    public Dojo getDojo() {
+        return dojo;
     }
 
-    private Member getFullMember(Member member) {
-        LoadContext<Member> loadContext = LoadContext.create(Member.class)
-                .setId(member.getId())
-                .setView("member-view");
+    private Dojo getFullDojo(Dojo dojo) {
+        LoadContext<Dojo> loadContext = LoadContext.create(Dojo.class)
+                .setId(dojo.getId())
+                .setView("dojo-members-view");
         return dataManager.load(loadContext);
     }
 }

@@ -8,9 +8,9 @@ import com.company.ajjftest.entity.Template;
 public interface AJJFEmailService {
     String NAME = "ajjftest_AJJFEmailService";
 
-    Boolean SendMemberEmail(Member member, Template template);
+    Boolean sendMemberEmail(Member member, Template template);
 
-    Boolean SendDojoEmail(Dojo dojo, Template template);
+    Boolean sendDojoEmail(Dojo dojo, Template template);
 
-    String GeneratePreview(Member member, String templateBody);
+    String generatePreview(Member member, String templateBody);
 }

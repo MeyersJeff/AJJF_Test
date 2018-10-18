@@ -37,6 +37,8 @@ order by e.name_short]]>
                 <column id="name_long"/>
                 <column id="city"/>
                 <column id="head1"/>
+                <column id="emailAddress"/>
+                <column id="expireDate"/>
             </columns>
             <rows datasource="dojoDs"/>
             <rowsCount/>

@@ -28,7 +28,7 @@ public class TemplateEdit extends AbstractEditor<Template> {
 
         Member member = BuildFakeMember();
 
-        String bodySample = emailService.GeneratePreview(member, templateContents);
+        String bodySample = emailService.generatePreview(member, templateContents);
 
         exportDisplay.show(new ByteArrayDataProvider(bodySample.getBytes()),
                 "Preview.html",

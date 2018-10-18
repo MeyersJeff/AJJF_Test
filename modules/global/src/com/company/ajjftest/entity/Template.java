@@ -12,8 +12,9 @@ import com.haulmont.cuba.core.entity.Creatable;
 import com.haulmont.chile.core.annotations.NamePattern;
 import javax.persistence.Lob;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
+import javax.validation.constraints.NotNull;
 
-@NamePattern("%s|name")
+@NamePattern("%s (%s)|name,dataType")
 @Table(name = "AJJFTEST_TEMPLATE")
 @Entity(name = "ajjftest$Template")
 public class Template extends BaseUuidEntity implements Versioned, Updatable, Creatable {
@@ -27,6 +28,10 @@ public class Template extends BaseUuidEntity implements Versioned, Updatable, Cr
 
     @Column(name = "EMAIL_SUBJECT", length = 50)
     protected String emailSubject;
+
+    @NotNull
+    @Column(name = "DATA_TYPE", nullable = false)
+    protected String dataType;
 
     @Lob
     @Column(name = "CONTENTS")
@@ -47,6 +52,15 @@ public class Template extends BaseUuidEntity implements Versioned, Updatable, Cr
 
     @Column(name = "CREATED_BY", length = 50)
     protected String createdBy;
+
+    public void setDataType(TemplateDataTypeEnum dataType) {
+        this.dataType = dataType == null ? null : dataType.getId();
+    }
+
+    public TemplateDataTypeEnum getDataType() {
+        return dataType == null ? null : TemplateDataTypeEnum.fromId(dataType);
+    }
+
 
     public void setEmailSubject(String emailSubject) {
         this.emailSubject = emailSubject;

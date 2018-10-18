@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
-        caption="msg://MemberEmail"
-        class="com.company.ajjftest.web.screens.Sendemail"
-        focusComponent="memberid"
+        caption="msg://DojoEmail"
+        class="com.company.ajjftest.web.screens.SendDojoEmail"
         messagesPack="com.company.ajjftest.web.screens">
     <dsContext>
-        <collectionDatasource id="membersDs"
-                              class="com.company.ajjftest.entity.Member"
+        <collectionDatasource id="dojosDs"
+                              class="com.company.ajjftest.entity.Dojo"
                               view="_local">
             <query>
-                <![CDATA[select e from ajjftest$Member e]]>
+                <![CDATA[select e from ajjftest$Dojo e]]>
             </query>
         </collectionDatasource>
         <collectionDatasource id="templatesDs"
                               class="com.company.ajjftest.entity.Template"
                               view="_local">
             <query>
-                <![CDATA[select e from ajjftest$Template e where e.dataType='M']]>
+                <![CDATA[select e from ajjftest$Template e where e.dataType='D']]>
             </query>
         </collectionDatasource>
     </dsContext>
@@ -24,12 +23,12 @@
                 width="800"/>
     <layout>
         <vbox spacing="true">
-            <lookupField id="memberid"
-                         caption="Choose a Member"
-                         optionsDatasource="membersDs"
+            <lookupField id="dojoId"
+                         caption="Choose a Dojo"
+                         optionsDatasource="dojosDs"
                          required="true"
                          width="250px"/>
-            <lookupField id="templateid"
+            <lookupField id="templateId"
                          caption="Choose a Template"
                          optionsDatasource="templatesDs"
                          required="true"
