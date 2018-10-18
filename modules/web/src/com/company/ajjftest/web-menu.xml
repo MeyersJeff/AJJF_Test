@@ -8,6 +8,7 @@
     <menu id="dojos"
           insertBefore="administration">
         <item id="ajjftest$Dojo.browse"/>
+        <item screen="sendDojoEmail"/>
     </menu>
     <menu id="codes"
           insertBefore="administration">

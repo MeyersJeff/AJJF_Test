@@ -55,6 +55,7 @@ order by e.promotionDate desc]]>
                     <field id="rank"
                            optionsDatasource="ranksDs"/>
                     <field id="emailAddr"/>
+                    <field property="expireDate"/>
                 </column>
                 <column>
                     <field id="birthDate"

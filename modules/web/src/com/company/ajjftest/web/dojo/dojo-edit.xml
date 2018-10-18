@@ -42,6 +42,8 @@ where m.dojo.id = :ds$dojoDs]]>
                            optionsDatasource="membersDs"/>
                     <field id="head3"
                            optionsDatasource="membersDs"/>
+                    <field property="emailAddress"/>
+                    <field property="expireDate"/>
                 </column>
             </fieldGroup>
             <frame id="windowActions"
@@ -59,6 +61,7 @@ where m.dojo.id = :ds$dojoDs]]>
                     <column id="memberNumber"/>
                     <column id="notes"/>
                     <column id="emailAddr"/>
+                    <column id="expireDate"/>
                 </columns>
                 <rows datasource="membersDs"/>
             </table>

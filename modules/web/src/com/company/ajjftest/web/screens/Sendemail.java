@@ -4,7 +4,6 @@ import com.company.ajjftest.entity.Member;
 import com.company.ajjftest.entity.Template;
 import com.company.ajjftest.service.AJJFEmailService;
 import com.company.ajjftest.service.PDFService;
-import com.haulmont.cuba.core.global.*;
 import com.haulmont.cuba.gui.components.AbstractWindow;
 import com.haulmont.cuba.gui.components.LookupField;
 import com.haulmont.cuba.gui.export.ByteArrayDataProvider;
@@ -23,9 +22,6 @@ public class Sendemail extends AbstractWindow {
 
     @Inject
     private ExportDisplay exportDisplay;
-
-    @Inject
-    protected DataManager dataManager;
 
     @Inject
     private AJJFEmailService emailService;
@@ -48,12 +44,10 @@ public class Sendemail extends AbstractWindow {
             return;
         }
 
-        member = GetFullMember(member);
-
-        if (emailService.SendMemberEmail(member, template)) {
+        if (emailService.sendMemberEmail(member, template)) {
             showNotification("Sent Email To: " + member.getEmailAddr());
         } else {
-            showNotification("SendMemberEmail failed", NotificationType.ERROR);
+            showNotification("sendMemberEmail failed", NotificationType.ERROR);
         }
     }
 
@@ -72,19 +66,9 @@ public class Sendemail extends AbstractWindow {
             return;
         }
 
-        member = GetFullMember(member);
-
-        exportDisplay.show(new ByteArrayDataProvider(pdfService.generateMemberPDF(member)),
+        exportDisplay.show(new ByteArrayDataProvider(pdfService.generateMemberPDF(member, template)),
                 "Report.pdf",
                 ExportFormat.PDF);
     }
-
-    private Member GetFullMember(Member member) {
-        LoadContext<Member> loadContext = LoadContext.create(Member.class)
-                .setId(member.getId())
-                .setView("member-view");
-        return dataManager.load(loadContext);
-    }
-
 
 }

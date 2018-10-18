@@ -20,6 +20,7 @@
                 <field property="name"/>
                 <field property="description"/>
                 <field property="emailSubject"/>
+                <field property="dataType"/>
             </column>
         </fieldGroup>
         <button id="previewButton"
@@ -28,10 +29,10 @@
                 invoke="onPreviewButtonClick"/>
         <sourceCodeEditor id="contentsEditor"
                           datasource="templateDs"
-                          height="300px"
+                          height="350px"
                           mode="HTML"
                           property="contents"
-                          width="500px"/>
+                          width="600px"/>
         <frame id="windowActions"
                screen="editWindowActions"/>
     </layout>

@@ -1,40 +1,56 @@
 package com.company.ajjftest.core;
 
+import com.company.ajjftest.entity.CentralOffice;
+import com.company.ajjftest.entity.Dojo;
 import com.company.ajjftest.entity.Member;
+import com.company.ajjftest.entity.Template;
 import com.haulmont.cuba.core.global.Resources;
-import com.itextpdf.io.font.FontConstants;
-import com.itextpdf.io.image.ImageDataFactory;
-import com.itextpdf.kernel.color.Color;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfDocumentInfo;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Image;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Text;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StreamUtils;
 
 import javax.inject.Inject;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
+import java.io.Serializable;
 
 @Component
 public class PDFHelper {
     @Inject
     private Resources resources;
 
+    @Inject
+    private CentralOfficeHelper centralOfficeHelper;
+
+    @Inject
+    private OfficeMemberCombo officeMemberCombo;
+
+    @Inject
+    private OfficeDojoCombo officeDojoCombo;
+
     private static final String imagePath1 = "com/company/ajjftest/images/AJJF-Logo1.png";
 
-    public byte[] BuildPDFFromMember(Member member) {
+    public byte[] buildPDFFromMember(Member member, Template template) {
+        CentralOffice co = centralOfficeHelper.getCentralOffice();
+        OfficeMemberCombo d = officeMemberCombo.setOffice(co).setMember(member);
 
+        return generatePDF(d, template, co);
+    }
+
+    public byte[] buildPDFFromDojo(Dojo dojo, Template template) {
+        CentralOffice co = centralOfficeHelper.getCentralOffice();
+        OfficeDojoCombo d = officeDojoCombo.setOffice(co).setDojo(dojo);
+
+        return generatePDF(d, template, co);
+    }
+
+    private byte[] generatePDF(Serializable data, Template template, CentralOffice centralOffice) {
         try {
-            InputStream ins = resources.getResourceAsStream(imagePath1);
-            byte[] imageArray = StreamUtils.copyToByteArray(ins);
-            Image logo = new Image(ImageDataFactory.create(imageArray));
+            String html = FreeMarkerHelper.buildBodyFromTemplate(data, template.getName());
 
             //Build PDF document
             ByteArrayOutputStream pdfStream = new ByteArrayOutputStream();
@@ -43,28 +59,20 @@ public class PDFHelper {
             Document document = new Document(pdf, PageSize.LETTER);
 
             PdfDocumentInfo pdfDocumentInfo = pdf.getDocumentInfo();
-            pdfDocumentInfo.setTitle("AJJF Member Report");
-            pdfDocumentInfo.setAuthor("AJJF Central Office");
+            pdfDocumentInfo.setTitle(template.getEmailSubject());
+            pdfDocumentInfo.setAuthor(centralOffice.getCoTitle());
 
-            PdfFont font = PdfFontFactory.createFont(FontConstants.HELVETICA);
+            ConverterProperties converterProperties = new ConverterProperties();
+//            converterProperties.setBaseUri("com/company/ajjftest/images");
 
-            Paragraph p = new Paragraph();
-            p.add(logo.scale(0.2f, 0.2f));
-            Text t = new Text(" American Judo & Jujitsu Federation")
-                    .setFontColor(Color.BLUE)
-                    .setFont(font)
-                    .setFontSize(20f);
-            p.add(t);
-
-            document.add(p);
-
+            HtmlConverter.convertToPdf(html, pdf, converterProperties);
             document.close();
+
             return pdfStream.toByteArray();
         } catch (Exception e) {
-            System.out.println("Exception in BuildPDF(): " + e.getMessage());
+            System.out.println("Exception in generatePDF(): " + e.getMessage());
         }
 
         return null;
     }
-
 }
