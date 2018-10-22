@@ -63,7 +63,7 @@ public class PDFHelper {
             pdfDocumentInfo.setAuthor(centralOffice.getCoTitle());
 
             ConverterProperties converterProperties = new ConverterProperties();
-//            converterProperties.setBaseUri("com/company/ajjftest/images");
+            converterProperties.setBaseUri("classpath:com/company/ajjftest/images/");
 
             HtmlConverter.convertToPdf(html, pdf, converterProperties);
             document.close();
