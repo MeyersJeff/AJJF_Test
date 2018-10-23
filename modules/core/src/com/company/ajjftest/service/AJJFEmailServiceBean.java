@@ -95,9 +95,7 @@ public class AJJFEmailServiceBean implements AJJFEmailService {
 
         OfficeMemberCombo d = officeMemberCombo.setOffice(co).setMember(member);
 
-        String results = FreeMarkerHelper.buildBodyFromTemplate(d, tempName);
-
-        return results;
+        return FreeMarkerHelper.buildBodyFromTemplate(d, tempName);
     }
 
 }

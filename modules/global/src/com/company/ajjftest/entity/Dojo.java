@@ -16,6 +16,7 @@ import javax.persistence.OrderBy;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @NamePattern("%s|name_short")
 @Table(name = "AJJFTEST_DOJO")
@@ -32,8 +33,9 @@ public class Dojo extends StandardEntity {
     @Column(name = "EMAIL_ADDRESS", length = 100)
     protected String emailAddress;
 
+    @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(name = "EXPIRE_DATE")
+    @Column(name = "EXPIRE_DATE", nullable = false)
     protected Date expireDate;
 
     @OneToMany(mappedBy = "dojo")

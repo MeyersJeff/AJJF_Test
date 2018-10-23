@@ -12,7 +12,7 @@ create table AJJFTEST_DOJO (
     NAME_SHORT varchar(30) not null,
     NAME_LONG varchar(100),
     EMAIL_ADDRESS varchar(100),
-    EXPIRE_DATE date,
+    EXPIRE_DATE date not null,
     ADDR1 varchar(50),
     ADDR2 varchar(50),
     CITY varchar(40),
@@ -39,12 +39,12 @@ create table AJJFTEST_MEMBER (
     NAME_LAST varchar(30) not null,
     NAME_FIRST varchar(30) not null,
     NAME_MIDDLE varchar(30),
-    EXPIRE_DATE date,
     DOJO_ID varchar(32),
     RANK_ID varchar(32),
     MEMBER_NUMBER integer not null,
     NOTES varchar(500),
     EMAIL_ADDR varchar(100),
+    EXPIRE_DATE date not null,
     BIRTH_DATE date,
     --
     primary key (ID)

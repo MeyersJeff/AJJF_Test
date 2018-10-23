@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import com.haulmont.chile.core.annotations.MetaProperty;
 
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 @Listeners("ajjftest_MemberEntityListener")
 @NamePattern("%s, %s|name_last,name_first")
@@ -55,8 +56,9 @@ public class Member extends StandardEntity {
     protected String emailAddr;
 
 
+    @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(name = "EXPIRE_DATE")
+    @Column(name = "EXPIRE_DATE", nullable = false)
     protected Date expireDate;
 
     @Transient
