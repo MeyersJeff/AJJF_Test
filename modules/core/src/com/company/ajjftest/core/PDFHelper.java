@@ -4,7 +4,6 @@ import com.company.ajjftest.entity.CentralOffice;
 import com.company.ajjftest.entity.Dojo;
 import com.company.ajjftest.entity.Member;
 import com.company.ajjftest.entity.Template;
-import com.haulmont.cuba.core.global.Resources;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.kernel.geom.PageSize;
@@ -21,9 +20,6 @@ import java.io.Serializable;
 @Component
 public class PDFHelper {
     @Inject
-    private Resources resources;
-
-    @Inject
     private CentralOfficeHelper centralOfficeHelper;
 
     @Inject
@@ -31,8 +27,6 @@ public class PDFHelper {
 
     @Inject
     private OfficeDojoCombo officeDojoCombo;
-
-    private static final String imagePath1 = "com/company/ajjftest/images/AJJF-Logo1.png";
 
     public byte[] buildPDFFromMember(Member member, Template template) {
         CentralOffice co = centralOfficeHelper.getCentralOffice();
