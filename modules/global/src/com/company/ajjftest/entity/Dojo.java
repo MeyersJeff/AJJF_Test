@@ -38,6 +38,7 @@ public class Dojo extends StandardEntity {
     @Column(name = "EXPIRE_DATE", nullable = false)
     protected Date expireDate;
 
+    @OrderBy("name_last, name_first, memberNumber")
     @OneToMany(mappedBy = "dojo")
     protected List<Member> members;
 

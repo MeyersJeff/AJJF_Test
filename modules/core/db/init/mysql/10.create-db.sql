@@ -45,6 +45,7 @@ create table AJJFTEST_MEMBER (
     NOTES varchar(500),
     EMAIL_ADDR varchar(100),
     EXPIRE_DATE date not null,
+    NEED_CARD_PRINTED boolean,
     BIRTH_DATE date,
     --
     primary key (ID)

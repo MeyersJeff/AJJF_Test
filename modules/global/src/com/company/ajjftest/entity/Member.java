@@ -21,6 +21,7 @@ import com.haulmont.chile.core.annotations.MetaProperty;
 
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import com.haulmont.chile.core.annotations.NumberFormat;
 
 @Listeners("ajjftest_MemberEntityListener")
 @NamePattern("%s, %s|name_last,name_first")
@@ -46,6 +47,7 @@ public class Member extends StandardEntity {
     @JoinColumn(name = "RANK_ID")
     protected CodesRank rank;
 
+    @NumberFormat(pattern = "00000")
     @Column(name = "MEMBER_NUMBER", nullable = false)
     protected Integer memberNumber = 0;
 
@@ -65,6 +67,9 @@ public class Member extends StandardEntity {
     @MetaProperty
     protected String expireStatus;
 
+    @Column(name = "NEED_CARD_PRINTED")
+    protected Boolean needCardPrinted;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE")
     protected Date birthDate;
@@ -72,6 +77,15 @@ public class Member extends StandardEntity {
     @Transient
     @MetaProperty
     protected Integer age;
+
+    public void setNeedCardPrinted(Boolean needCardPrinted) {
+        this.needCardPrinted = needCardPrinted;
+    }
+
+    public Boolean getNeedCardPrinted() {
+        return needCardPrinted;
+    }
+
 
     public String getExpireStatus() {
         if (expireDate == null) {
