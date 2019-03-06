@@ -11,6 +11,7 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -94,18 +95,17 @@ public class Member extends StandardEntity {
         }
 
         //Convert old Date type to new LocalDate objects
-        LocalDate memberExp = expireDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate memberExp = Instant.ofEpochMilli(expireDate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 
         //Calculate comparison dates
         LocalDate today = LocalDate.now(ZoneId.systemDefault());
-        LocalDate pendDate = today.minusDays(30);
         LocalDate expDate = today.minusDays(60);
 
         if (memberExp.isAfter(today)) {
             expireStatus = "OK";
         } else if (memberExp.isBefore(expDate)) {
             expireStatus = "EXP";
-        } else if (memberExp.isAfter(pendDate)) {
+        } else if (!memberExp.isBefore(expDate)) {
             expireStatus = "PEND";
         } else {
             expireStatus = "???";
@@ -133,7 +133,7 @@ public class Member extends StandardEntity {
             Date today = new Date();
             Long diff = today.getTime() - this.birthDate.getTime();
             Long ageLong = diff / (365L * 24L * 60L * 60L * 1000L);
-            age = ageLong != null ? ageLong.intValue() : null;
+            age = ageLong != null ? ageLong.intValue() : 0;
         }
         return age;
     }
